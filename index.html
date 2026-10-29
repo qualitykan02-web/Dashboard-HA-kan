@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard HA จังหวัดกาญจนบุรี</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f5fb;--card:#fff;--tx:#1c2733;--mu:#5d6b7a;--bd:#e1e8f1;--ok:#16a34a;--wa:#d97706;--ur:#e11d48;--ex:#7f1d1d;--bl:#2563eb;--pu:#7c3aed;--tl:#0d9488;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1620;--card:#172230;--tx:#e8eef5;--mu:#9fb0c2;--bd:#263548;--ok:#4ade80;--wa:#fbbf24;--ur:#fb7185;--ex:#fca5a5;--bl:#60a5fa;--pu:#a78bfa;--tl:#2dd4bf;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Sarabun','Noto Sans Thai',Tahoma,sans-serif;line-height:1.5}
+.w{max-width:1180px;margin:0 auto;padding:14px}
+header{background:linear-gradient(135deg,#0b6e8a,#2563eb 55%,#7c3aed);color:#fff;border-radius:18px;padding:22px 22px 18px}
+header h1{margin:0;font-size:1.55rem}header p{margin:4px 0 0;opacity:.92;font-size:.95rem}
+.g{display:grid;gap:12px;margin-top:12px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px}
+.c h2{margin:0 0 10px;font-size:1.05rem}
+.k{border-left:6px solid var(--k);display:flex;gap:12px;align-items:center}
+.k .i{font-size:1.9rem}.k b{font-size:2rem;line-height:1;color:var(--k)}.k small{display:block;color:var(--mu)}
+.rings{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-around}
+.ring{text-align:center;width:150px}
+.ring .r{width:130px;height:130px;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--bd) 0)}
+.ring .r div{width:98px;height:98px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:1.6rem;font-weight:700;color:var(--ok)}
+.ring small{color:var(--mu)}
+.ev{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;border:1px solid var(--bd);margin-bottom:7px;border-left:5px solid var(--e)}
+.ev .d{margin-left:auto;text-align:right;font-weight:700;color:var(--e);white-space:nowrap}
+.ev small{color:var(--mu);display:block}
+.tag{display:inline-block;padding:1px 9px;border-radius:99px;font-size:.78rem;font-weight:600;color:#fff;background:var(--e)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.bar button{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:5px 14px;font:inherit;cursor:pointer}
+.bar button.on{background:var(--bl);color:#fff;border-color:var(--bl)}
+.tw{overflow-x:auto}
+table{width:100%;min-width:900px;border-collapse:collapse;font-size:.9rem}
+th{background:var(--bd);text-align:left;padding:8px;white-space:nowrap}
+td{padding:8px;border-bottom:1px solid var(--bd);vertical-align:middle}
+.lv{background:var(--bl);color:#fff;border-radius:8px;padding:1px 9px;font-weight:700}
+.pg{height:7px;border-radius:9px;background:var(--bd);margin-top:4px;min-width:90px}.pg i{display:block;height:100%;border-radius:9px;background:var(--e)}
+.st{color:#fff;background:var(--e);border-radius:8px;padding:2px 10px;font-weight:600;white-space:nowrap}
+.mu{color:var(--mu)}.sent{color:var(--ok);font-size:.78rem}
+.pd{background:linear-gradient(135deg,rgba(13,148,136,.16),rgba(124,58,237,.12));border-color:var(--tl)}
+.hs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 2px}.hc{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--card)}.ar{color:var(--mu)}tr.rw{cursor:pointer}tr.rw:hover{background:var(--bd)}
+footer{margin:16px 2px 4px;color:var(--mu);font-size:.85rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+<h1>🏥 Dashboard การรับรองคุณภาพโรงพยาบาล (HA) จังหวัดกาญจนบุรี</h1>
+<p>สำนักงานสาธารณสุขจังหวัดกาญจนบุรี · ติดตามสถานะการรับรองและวางแผนต่ออายุล่วงหน้า 180 วัน</p>
+</header>
+<div class="g g4" id="kpi"></div>
+<div class="c" style="margin-top:12px"><h2>📌 ตัวชี้วัดที่ 29 : ร้อยละของโรงพยาบาลสังกัดกระทรวงสาธารณสุขมีคุณภาพผ่านการรับรองตามมาตรฐาน ปีงบประมาณ 2569</h2><div class="rings" id="rings"></div></div>
+<div class="c" style="margin-top:12px">
+<h2>📋 รายละเอียดสถานะการรับรองรายโรงพยาบาล</h2>
+<div class="bar" id="bar"></div>
+<div class="tw"><table><thead><tr><th>โรงพยาบาล</th><th>ระดับ</th><th>สถานะ</th><th>รับรองล่าสุด</th><th>ครบกำหนดต่ออายุ</th><th>ส่ง SAR</th><th>Surveillance</th><th>แจ้งเตือน</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="mu" style="font-size:.82rem;margin:8px 0 0">👆 คลิกที่แถวโรงพยาบาลเพื่อดูประวัติการรับรอง/ต่ออายุย้อนหลัง · เกณฑ์: เร่งด่วน ≤ 90 วัน · เฝ้าระวัง 91–180 วัน · ปกติ &gt; 180 วัน (นับจากวันที่เปิดดู) · หมายเหตุตามชีต: วันที่อาจมีการเปลี่ยนแปลงได้ตาม สรพ. กำหนด</p>
+</div>
+<div class="g g2">
+<div class="c"><h2>⏰ แจ้งเตือนล่วงหน้า 180 วัน</h2><div id="ev"></div></div>
+<div class="c pd"><h2>🔥 รพ.ค่ายสุรสีห์ (กระทรวงกลาโหม)</h2><div id="pd"></div></div>
+</div>
+<footer>📅 อัปเดตข้อมูลล่าสุด: 28 ตุลาคม 2569 · ที่มา: ชีต “Dashboard HA”</footer>
+</div>
+<script>
+const M=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+// [ชื่อ, ระดับ, กลุ่ม, สถานะ, รับรองล่าสุด, ครบกำหนดต่ออายุ, ส่ง SAR, Surveillance, SARส่งแล้ว]
+const R=[
+["พหลพลพยุหเสนา","รพศ.","c","R4","2025-01-14","2028-01-13","2027-07-13","2026-07-15",0],
+["มะการักษ์","รพท.","c","R5","2026-10-23","2029-08","2029-02-01","Y2028",0],
+["บ่อพลอย","รพช.","p","R5","2024-01-09","2027-01-08","2026-07-08","Y2029",1],
+["ทองผาภูมิ","รพช.","p","R3","2025-05-27","2028-07-21","2028-01-21","2027-01-19",0],
+["สมเด็จพระสังฆราชองค์ที่ 19","รพช.","p","R5","2025-01-14","2028-01-13","2027-07-13","2026-06-16",0],
+["เจ้าคุณไพบูลย์พนมทวน","รพช.","p","R4","2024-10-08","2027-10-07","2027-04-07","2026-03-31",0],
+["เลาขวัญ","รพช.","p","R3","2024-08","2027-11-11","2027-05-11","2026-04-21",0],
+["สมเด็จพระปิยมหาราชรมณียเขต","รพช.","p","R2","2024-03-24","2027-03-23","2026-09-23","Y2028",1],
+["ไทรโยค","รพช.","p","AS","2025-09-21","2028-09-22","2028-03-22","Y2027",0],
+["สังขละบุรี","รพช.","p","R3","2025-06-22","2028-06-23","2027-12-23","2026-12-23",0],
+["ห้วยกระเจาเฉลิมพระเกียรติ","รพช.","p","R3","2025-06-24","2028-06-23","2027-12-23","2026-12-23",0],
+["ด่านมะขามเตี้ย","รพช.","p","R3","2025-06-24","2028-06-23","2027-12-23","2026-12-23",0],
+["สถานพระบารมี","รพช.","p","R3","2025-09-09","2028-09-22","2028-06-22","2027-01-30",0],
+["ท่ากระดาน","รพช.","p","R3","2026-04-27","2029-06-08","2028-12-08","Y2027",0],
+["ศุกร์ศิริศรีสวัสดิ์","รพช.","p","R3","2026-07-14","2029-07","2029-01-01","Y2028",0],
+["หนองปรือ","รพช.","p","AS","2024-09","2027-11-11","2027-05-11","2026-05-01",0],
+["ค่ายสุรสีห์","กลาโหม","m","R4","2025-05-25","2028-05-26","2027-11-26","Y2026",0]
+].map(a=>({n:a[0],l:a[1],g:a[2],r:a[3],c:a[4],x:a[5],s:a[6],v:a[7],sent:a[8]}));
+const PDSC="2027-02-15";
+const T=new Date();T.setHours(0,0,0,0);
+const P=s=>{if(!s||s[0]=="Y")return null;const a=s.split("-");return new Date(+a[0],a[1]-1,+a[2]||1)};
+const F=s=>{if(!s)return"-";if(s[0]=="Y")return"ปี "+(+s.slice(1)+543);const a=s.split("-");return(a[2]?(+a[2])+" ":"")+M[a[1]-1]+" "+(+a[0]+543)};
+const dd=s=>{const p=P(s);return p?Math.round((p-T)/864e5):null};
+const stt=d=>d<=0?["หมดอายุ","var(--ex)"]:d<=90?["เร่งด่วน","var(--ur)"]:d<=180?["เฝ้าระวัง","var(--wa)"]:["ปกติ","var(--ok)"];
+R.forEach(h=>{h.d=dd(h.x)});
+const $=id=>document.getElementById(id);
+const moph=R.filter(h=>h.g!="m"),cp=moph.filter(h=>h.g=="c"),cm=moph.filter(h=>h.g=="p");
+const valid=a=>a.filter(h=>P(h.c)<=T&&h.d>0).length;
+const pct=a=>Math.round(valid(a)*100/a.length);
+const due=R.filter(h=>h.d<=180).length;
+$("kpi").innerHTML=[
+["🏥",R.length,"โรงพยาบาลทั้งหมด","ในจังหวัดกาญจนบุรี","var(--bl)"],
+["🩺",moph.length,"สังกัดกระทรวงสาธารณสุข","รพศ. "+cp.filter(h=>h.l=="รพศ.").length+" · รพท. "+cp.filter(h=>h.l=="รพท.").length+" · รพช. "+cm.length,"var(--tl)"],
+["🛡️",R.length-moph.length,"สังกัดกระทรวงกลาโหม","รพ.ค่ายสุรสีห์","var(--pu)"],
+["⏰",due,"ต้องต่ออายุใน 180 วัน","แห่ง (ตามวันครบกำหนด)",due?"var(--ur)":"var(--ok)"]
+].map(k=>`<div class="c k" style="--k:${k[4]}"><div class="i">${k[0]}</div><div><b>${k[1]}</b><small>${k[2]}</small><small>${k[3]}</small></div></div>`).join("");
+$("rings").innerHTML=[["รพศ./รพท./รพ.ทั่วไป",cp],["รพช.",cm]].map(x=>`<div class="ring"><div class="r" style="--p:${pct(x[1])}"><div>${pct(x[1])}%</div></div><b>${x[0]}</b><br><small>ผ่านการรับรอง ${valid(x[1])}/${x[1].length} แห่ง</small></div>`).join("")+`<div class="ring"><div class="r" style="--p:${pct(moph)}"><div>${pct(moph)}%</div></div><b>รวมสังกัด สธ.</b><br><small>ผ่านการรับรอง ${valid(moph)}/${moph.length} แห่ง</small></div>`;
+// events
+const E=[];
+R.forEach(h=>{
+ const a=[["ต่ออายุ HA",h.x,0,"var(--ur)"],["ส่ง SAR",h.s,h.sent,"var(--bl)"],["Surveillance",h.v,0,"var(--pu)"]];
+ a.forEach(e=>{const d=dd(e[1]);if(d!==null&&d>=0&&d<=180&&!e[2])E.push({n:h.n,t:e[0],dt:e[1],d,c:e[3]})});
+});
+E.push({n:"ค่ายสุรสีห์",t:"PDSC โรคลมร้อน",dt:PDSC,d:dd(PDSC),c:"var(--tl)"});
+E.filter(e=>e.d<0||e.d>180).forEach(e=>E.splice(E.indexOf(e),1));
+E.sort((a,b)=>a.d-b.d);
+$("ev").innerHTML=(E.length?E.map(e=>`<div class="ev" style="--e:${e.c}"><div><b>${e.n}</b><small><span class="tag">${e.t}</span> ${F(e.dt)}</small></div><div class="d">อีก ${e.d}<small>วัน</small></div></div>`).join(""):"ไม่มีรายการครบกำหนดใน 180 วัน")+`<p class="mu" style="font-size:.82rem;margin:6px 0 0">SAR ที่ส่งแล้วไม่นำมาแจ้งเตือน (บ่อพลอย, สมเด็จพระปิยมหาราชรมณียเขต)</p>`;
+const dp=dd(PDSC);
+$("pd").innerHTML=`<p style="margin:0 0 6px"><span class="tag" style="--e:var(--tl)">ผ่านการรับรอง PDSC</span></p><p style="margin:0;font-size:1.15rem"><b>โรคลมร้อน (Heat Stroke)</b></p><p style="margin:4px 0">วันที่ระบุในชีต: <b>${F(PDSC)}</b> ${dp>=0?`· อีก <b>${dp}</b> วัน`:""}</p><p class="mu" style="margin:0;font-size:.88rem">สถานะ HA: ${R[16].r} · ต่ออายุ ${F(R[16].x)}</p>`;
+// table
+const H={"พหลพลพยุหเสนา":["2013-05-17","2015-08-31","2018-11-13","2021-11-13","2025-01-14"],"มะการักษ์":["2011-11-29","2014-03-03","2017-10-24","2021-10-24","2023-10-23","2026-10-23"],"บ่อพลอย":["2008-03-06","2011-06-24","2014-09-26","2018-01-09","2021-01-09","2024-01-09"],"ทองผาภูมิ":["2016-02-09","2019-05-28","2022-05-28","2025-05-27"],"สมเด็จพระสังฆราชองค์ที่ 19":["2009-02-27","2012-02-24","2015-07-21","2018-09-25","2021-09-25","2025-01-14"],"เจ้าคุณไพบูลย์พนมทวน":["2013-03-23","2015-06-30","2018-09-11","2021-09-11","2024-10-08"],"เลาขวัญ":["2015-12-22","2018-08-14","2021-08-14","2024-08"],"สมเด็จพระปิยมหาราชรมณียเขต":["2017-12-12","2021-03-24","2024-03-24"],"ไทรโยค":["2025-09-21"],"สังขละบุรี":["2016-11-22","2019-04-23","2022-04-23","2025-06-22"],"ห้วยกระเจาเฉลิมพระเกียรติ":["2017-01-24","2019-04-23","2022-04-23","2025-06-24"],"ด่านมะขามเตี้ย":["2016-08-09","2019-04-23","2022-07-23","2025-06-24"],"สถานพระบารมี":["2017-01-10","2019-09-10","2022-09-10","2025-09-09"],"ท่ากระดาน":["2017-12-19","2020-04-28","2023-04-27","2026-04-27"],"ศุกร์ศิริศรีสวัสดิ์":["2017-11-14","2020-07-15","2023-07-15","2026-07-14"],"หนองปรือ":["2024-09"],"ค่ายสุรสีห์":["2013-12-20","2015-12-20","2019-04-23","2022-04-23","2025-05-25"]};
+const hist=h=>{const a=H[h.n]||[];return a.map((s,i)=>{const p=i?(P(s)-P(a[i-1]))/(365.25*864e5):0;return`<div class="hc"><span class="lv">${i?"R"+i:"AS"}</span><b>${F(s)}</b>${i?`<small class="mu">ห่าง ${p.toFixed(1)} ปี</small>`:`<small class="mu">รับรองครั้งแรก</small>`}</div>`}).join('<span class="ar">→</span>')+`<span class="ar">⇢</span><div class="hc" style="border-color:var(--ur)"><span class="lv" style="background:var(--ur)">R${a.length}</span><b>${F(h.x)}</b><small class="mu">ครบกำหนดถัดไป</small></div>`};
+let flt="all",srt=0,op="";
+const FL=[["all","ทั้งหมด"],["c","รพศ./รพท."],["p","รพช."],["m","กลาโหม"]];
+function bar(){$("bar").innerHTML=FL.map(f=>`<button class="${flt==f[0]?"on":""}" onclick="flt='${f[0]}';bar();tab()">${f[1]}</button>`).join("")+`<button class="${srt?"on":""}" onclick="srt=!srt;bar();tab()">⏱ เรียงตามความเร่งด่วน</button>`}
+function tab(){
+ let a=R.filter(h=>flt=="all"||h.g==flt);if(srt)a=[...a].sort((x,y)=>x.d-y.d);
+ $("tb").innerHTML=a.map(h=>{const s=stt(h.d),dv=dd(h.v),w=Math.max(0,Math.min(100,h.d/1095*100));
+ const sv=dv!==null&&dv<0?`${F(h.v)}<div class="sent">✔ รับตรวจแล้ว</div>`:F(h.v)+(dv!==null&&dv<=180?` <span class="tag" style="--e:var(--pu)">${dv} วัน</span>`:"");
+ return`<tr class="rw" onclick="op=op==='${h.n}'?'':'${h.n}';tab()"><td><b>${op===h.n?"▾":"▸"} ${h.n}</b></td><td>${h.l}</td><td><span class="lv">${h.r}</span></td><td>${F(h.c)}</td><td><b>${F(h.x)}</b><div class="pg" style="--e:${s[1]}"><i style="width:${w}%"></i></div><small class="mu">เหลือ ${h.d} วัน</small></td><td>${F(h.s)}${h.sent?`<div class="sent">✔ ส่งแล้ว</div>`:""}</td><td>${sv}</td><td><span class="st" style="--e:${s[1]}">${s[0]}</span></td></tr>`+(op===h.n?`<tr><td colspan="8" style="background:var(--bg)"><b>🕘 ประวัติการรับรอง/ต่ออายุย้อนหลัง · ${h.n}</b><div class="hs">${hist(h)}</div></td></tr>`:"")}).join("");
+}
+bar();tab();
+</script>
+</body>
+</html>
